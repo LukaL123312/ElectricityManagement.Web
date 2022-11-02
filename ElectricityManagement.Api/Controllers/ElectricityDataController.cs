@@ -9,11 +9,9 @@ namespace ElectricityManagement.Api.Controllers;
 public class ElectricityDataController : ControllerBase
 {
     private readonly IMediator _mediatr;
-    private readonly ILogger<ElectricityDataController> _logger;
-    public ElectricityDataController(IMediator mediatr, ILogger<ElectricityDataController> logger)
+    public ElectricityDataController(IMediator mediatr)
     {
         _mediatr = mediatr;
-        _logger = logger;
     }
 
     [HttpGet("get-electricity-data")]
