@@ -49,9 +49,14 @@ namespace ElectricityManagement.Api.Middlewares
                 context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 errorMessage = ExceptionMessageSetter(exception.Message);
             }
-            else if (exception is BadHttpRequestException)
+            else if (exception is OperationCanceledException)
             {
-                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                context.Response.StatusCode = (int)HttpStatusCode.ServiceUnavailable;
+                errorMessage = ExceptionMessageSetter(exception.Message);
+            }
+            else
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 errorMessage = ExceptionMessageSetter(exception.Message);
             }
 
